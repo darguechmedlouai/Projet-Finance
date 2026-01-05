@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Découvert Bancaire</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <img src="logo.png" alt="Logo">
+  <h1>Module Découvert Bancaire</h1>
+  <p>Calcul du ticket d’agios (intérêts + commissions + TVA)</p>
+</header>
+
+<nav>
+  <a href="index.html">Accueil</a>
+  <a href="epargne.html">Compte Épargne</a>
+  <a href="decouvert.html">Découvert</a>
+  <a href="escompte.html">Escompte</a>
+  <a href="annuites.html">Annuités</a>
+</nav>
+
+<div class="container">
+
+  <div class="card">
+    <h2>Entrées</h2>
+
+    <label>Montant du découvert (DT)</label>
+    <input type="number" id="montantDec" value="10000">
+
+    <label>Taux annuel découvert (%)</label>
+    <input type="number" id="tauxDec" value="8">
+
+    <label>Durée en jours</label>
+    <input type="number" id="joursDec" value="30">
+
+    <label>Commission (DT)</label>
+    <input type="number" id="commDec" value="20">
+
+    <label>TVA (%)</label>
+    <input type="number" id="tvaDec" value="19">
+
+    <button onclick="calculDecouvert()">Calculer Ticket d’Agios</button>
+
+    <div class="result-box" id="resultDecouvert">Résultat : ...</div>
+  </div>
+
+</div>
+
+<footer>
+  Finance Bank Simulator © 2026
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Annuités</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <img src="logo.png" alt="Logo">
+  <h1>Module Annuités</h1>
+  <p>Valeur actuelle et valeur acquise d’une annuité</p>
+</header>
+
+<nav>
+  <a href="index.html">Accueil</a>
+  <a href="epargne.html">Compte Épargne</a>
+  <a href="decouvert.html">Découvert</a>
+  <a href="escompte.html">Escompte</a>
+  <a href="annuites.html">Annuités</a>
+</nav>
+
+<div class="container">
+
+  <div class="card">
+    <h2>Entrées</h2>
+
+    <label>Annuité A (DT)</label>
+    <input type="number" id="A" value="1000">
+
+    <label>Taux i (%)</label>
+    <input type="number" id="i" value="5">
+
+    <label>Durée n (années)</label>
+    <input type="number" id="n" value="5">
+
+    <button onclick="calculAnnuites()">Calculer</button>
+
+    <div class="result-box" id="resultAnnuites">Résultat : ...</div>
+  </div>
+
+</div>
+
+<footer>
+  Finance Bank Simulator © 2026
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
