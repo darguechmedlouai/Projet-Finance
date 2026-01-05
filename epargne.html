@@ -6,15 +6,17 @@
   <title>Compte Épargne (Avancé)</title>
   <link rel="stylesheet" href="style.css">
 
-  <!-- jsPDF library -->
+  <!-- jsPDF + AutoTable (nécessaire pour PDF en tableau) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.29/jspdf.plugin.autotable.min.js"></script>
 </head>
+
 <body>
 
 <header>
   <img src="logo.png" alt="Logo">
-  <h1>Module Compte Épargne (Avancé)</h1>
-  <p>Gestion Dépôts / Retraits / Charges / Crédit + Export PDF</p>
+  <h1>Compte Épargne – Gestion Avancée</h1>
+  <p>Dépôts / Retraits / Charges / Crédits + Bilan + PDF</p>
 </header>
 
 <nav>
@@ -28,44 +30,79 @@
 <div class="container">
 
   <div class="card">
-    <h2>Informations générales</h2>
+    <h2>Informations Générales</h2>
 
-    <label>Solde initial (DT)</label>
+    <label>Solde Initial (DT)</label>
     <input type="number" id="soldeInitial" value="1000">
 
-    <label>Taux annuel (%)</label>
+    <label>Taux Annuel (%)</label>
     <input type="number" id="tauxEpargne" value="5">
 
-    <label>Durée en jours (pour intérêts simples)</label>
+    <label>Durée en jours</label>
     <input type="number" id="joursEpargne" value="90">
-
-    <button onclick="ajouterOperation()">➕ Ajouter une opération</button>
   </div>
 
   <div class="card">
-    <h2>Liste des opérations</h2>
+    <h2>Ajouter une Opération</h2>
+
+    <label>Date</label>
+    <input type="date" id="opDate">
+
+    <label>Type</label>
+    <select id="opType">
+      <option value="DEPOT">DEPOT</option>
+      <option value="RETRAIT">RETRAIT</option>
+      <option value="CREDIT">CREDIT</option>
+      <option value="CHARGES">CHARGES</option>
+    </select>
+
+    <label>Montant (DT)</label>
+    <input type="number" id="opMontant">
+
+    <button onclick="ajouterOperation()">➕ Ajouter l'opération</button>
+  </div>
+
+  <div class="card">
+    <h2>Liste des Opérations</h2>
 
     <table id="tableOps">
       <thead>
         <tr>
+          <th>#</th>
           <th>Date</th>
           <th>Type</th>
           <th>Montant (DT)</th>
-          <th>Solde après opération</th>
+          <th>Solde après</th>
           <th>Supprimer</th>
         </tr>
       </thead>
-      <tbody>
-        <!-- Operations ajoutées ici -->
-      </tbody>
+      <tbody></tbody>
     </table>
 
-    <button onclick="calculerBilanEpargne()">📊 Calculer Bilan</button>
-    <button onclick="exporterPDFEpargne()">📄 Télécharger PDF</button>
+    <button onclick="calculerBilanEpargne()">📊 Calculer le Bilan</button>
+    <button onclick="exporterPDFEpargne()">📄 Télécharger le PDF</button>
+  </div>
 
-    <div class="result-box" id="resultBilan">
-      Bilan : ...
-    </div>
+  <div class="card">
+    <h2>Bilan Structuré (Résumé)</h2>
+
+    <table id="tableBilan">
+      <thead>
+        <tr>
+          <th>Élément</th>
+          <th>Valeur</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Total Dépôts</td><td id="bDepot">0</td></tr>
+        <tr><td>Total Retraits</td><td id="bRetrait">0</td></tr>
+        <tr><td>Total Crédits</td><td id="bCredit">0</td></tr>
+        <tr><td>Total Charges</td><td id="bCharges">0</td></tr>
+        <tr><td>Solde Avant Intérêts</td><td id="bSoldeAvant">0</td></tr>
+        <tr><td>Intérêts Simples</td><td id="bInterets">0</td></tr>
+        <tr><th>Solde Final</th><th id="bSoldeFinal">0</th></tr>
+      </tbody>
+    </table>
   </div>
 
 </div>
@@ -74,6 +111,7 @@
   Finance Bank Simulator © 2026
 </footer>
 
-<script src="script.js"></script>
+<script src="script.js" defer></script>
+
 </body>
 </html>
