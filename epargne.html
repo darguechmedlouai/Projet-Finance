@@ -3,15 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Compte Épargne</title>
+  <title>Compte Épargne (Avancé)</title>
   <link rel="stylesheet" href="style.css">
+
+  <!-- jsPDF library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
 
 <header>
   <img src="logo.png" alt="Logo">
-  <h1>Module Compte Épargne</h1>
-  <p>Calcul des intérêts simples sur un compte d’épargne</p>
+  <h1>Module Compte Épargne (Avancé)</h1>
+  <p>Gestion Dépôts / Retraits / Charges / Crédit + Export PDF</p>
 </header>
 
 <nav>
@@ -25,26 +28,44 @@
 <div class="container">
 
   <div class="card">
-    <h2>Entrées</h2>
+    <h2>Informations générales</h2>
 
-    <label>Capital initial (DT)</label>
-    <input type="number" id="capital" value="500">
+    <label>Solde initial (DT)</label>
+    <input type="number" id="soldeInitial" value="1000">
 
     <label>Taux annuel (%)</label>
-    <input type="number" id="taux" value="5">
+    <input type="number" id="tauxEpargne" value="5">
 
-    <label>Nombre de jours</label>
-    <input type="number" id="jours" value="90">
+    <label>Durée en jours (pour intérêts simples)</label>
+    <input type="number" id="joursEpargne" value="90">
 
-    <label>Base (360 ou 365)</label>
-    <select id="base">
-      <option value="360">360</option>
-      <option value="365">365</option>
-    </select>
+    <button onclick="ajouterOperation()">➕ Ajouter une opération</button>
+  </div>
 
-    <button onclick="calculEpargne()">Calculer</button>
+  <div class="card">
+    <h2>Liste des opérations</h2>
 
-    <div class="result-box" id="resultEpargne">Résultat : ...</div>
+    <table id="tableOps">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Type</th>
+          <th>Montant (DT)</th>
+          <th>Solde après opération</th>
+          <th>Supprimer</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Operations ajoutées ici -->
+      </tbody>
+    </table>
+
+    <button onclick="calculerBilanEpargne()">📊 Calculer Bilan</button>
+    <button onclick="exporterPDFEpargne()">📄 Télécharger PDF</button>
+
+    <div class="result-box" id="resultBilan">
+      Bilan : ...
+    </div>
   </div>
 
 </div>
